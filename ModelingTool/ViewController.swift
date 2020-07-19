@@ -97,7 +97,6 @@ class ViewController: NSViewController {
             let nowString = formatter.string(from: Date())
             self.textUpdateDateTime.stringValue = nowString
             self.textCreateTime.stringValue = nowString
-
         }
     }
     
@@ -186,14 +185,79 @@ class ViewController: NSViewController {
 
     }
     
+    @IBAction func openFromFile(_ openMenuItem: NSMenuItem) {
+        print("View Controller: Clicked Open From File ...")
+        var path: String = ""
+        
+        let dialog = NSOpenPanel()
+        dialog.title = "Open the Menu Information from JSON file"
+        dialog.showsResizeIndicator = false
+        dialog.showsHiddenFiles = false;
+        dialog.allowsMultipleSelection = false;
+        dialog.canChooseFiles = true;
+        //dialog.canChooseDirectories = true;
+        
+        if(dialog.runModal() == NSApplication.ModalResponse.OK) {
+            let result = dialog.url
+            if result != nil {
+                path = result!.path
+                print("Selected path = \(path)")
+            } else {
+                return
+            }
+        }
+
+        let pathUrl = URL(fileURLWithPath: path)
+        let jsonData = try! Data(contentsOf: pathUrl)
+        let decoder = JSONDecoder()
+        
+        do {
+            self.menuInfo =  try decoder.decode(DetailMenuInformation.self, from: jsonData)
+            //print("detailMenuInformation = \(self.menuInfo)")
+        }
+        catch {
+            print("Failed to read JSON data: \(error.localizedDescription)")
+        }
+
+        self.recipeTemplates = self.menuInfo.recipeTemplates!
+        self.productCategory = self.menuInfo.productCategory!
+        
+        self.textBrandName.stringValue = self.menuInfo.brandName
+        self.textBrandCategory.stringValue = "茶飲類"
+        self.textBrandIconImage.stringValue = "Brand_Image/\(self.textBrandName.stringValue).png"
+        self.textMenuNumber.stringValue = "\(self.textBrandName.stringValue)_MENU"
+        self.textMenuMenuNumber.stringValue = "\(self.textBrandName.stringValue)_MENU"
+        //let formatter = DateFormatter()
+        //formatter.dateFormat = DATETIME_FORMATTER
+        //let nowString = formatter.string(from: Date())
+        self.textUpdateDateTime.stringValue = self.menuInfo.createTime
+        self.textCreateTime.stringValue =  self.menuInfo.createTime
+        configCategoryButtons()
+        self.productCategoryIndex = 0
+        self.productItemIndex = 0
+        let lastIndex = self.menuInfo.recipeTemplates!.count - 1
+        self.templateSequence = self.menuInfo.recipeTemplates![lastIndex].templateSequence
+
+        self.recipeTemplateTableView.reloadData()
+        self.productCategoryTableView.reloadData()
+        self.productNamePriceTableView.reloadData()
+    }
+
     @IBAction func getUpdatedRecipeTemplate(_ sender: NSButton) {
         updateRecipeTemplates()
     }
     
     func updateRecipeTemplates() {
+        if self.recipeTemplates.isEmpty {
+            return
+        }
+        
         for i in 0...self.recipeTemplates.count - 1 {
             let cell = self.recipeTemplateTableView.view(atColumn: 2, row: i, makeIfNecessary: true) as! RecipeTemplateCell
-            let data = cell.getTemplateData()
+            var data = cell.getTemplateData()
+            let cellName = self.recipeTemplateTableView.view(atColumn: 1, row: i, makeIfNecessary: true) as! RecipeNameCell
+            let name = cellName.getData()
+            data.templateName = name
             //print("recipeTemplateData = \(data)")
             self.recipeTemplates[i] = data
         }
@@ -306,6 +370,7 @@ class ViewController: NSViewController {
     @IBAction func createMenuJSONFile(_ sender: NSButton) {
         var path: String = ""
         
+        self.menuInfo.brandName = self.textBrandName.stringValue
         self.menuInfo.menuNumber = self.textMenuNumber.stringValue
         self.menuInfo.createTime = self.textCreateTime.stringValue
         self.menuInfo.recipeTemplates = self.recipeTemplates
@@ -339,18 +404,77 @@ class ViewController: NSViewController {
                 }
             }
             
-            let file_path = path + "/\(self.menuInfo.menuNumber).json"
+            //let file_path = path + "/\(self.menuInfo.menuNumber).json"
+            let file_path = path + "/\(self.menuInfo.brandName)_DETAIL_MENU_INFORMATION.json"
             
             let pathAsURL = URL(fileURLWithPath: file_path)
             do {
                 try encodedData.write(to: pathAsURL)
             }
             catch {
-                print("Failed to write JSON data: \(error.localizedDescription)")
+                print("Failed to write [\(self.menuInfo.brandName)] DETAIL_MENU_INFORMATION JSON data: \(error.localizedDescription)")
+            }
+        }
+        
+        createBrandCategoryJSONFile(path: path, name: self.menuInfo.brandName)
+        createBrandProfileJSONFile(path: path, name: self.menuInfo.brandName)
+    }
+    
+    func createBrandCategoryJSONFile(path: String, name: String) {
+        var brandCategory: DetailBrandCategory = DetailBrandCategory()
+        if self.textBrandName.stringValue == "" {
+            print("Brand Name is empty, not creating Brand Category JSON file, just return")
+            return
+        }
+        
+        brandCategory.brandName = self.textBrandName.stringValue
+        brandCategory.brandIconImage = self.textBrandIconImage.stringValue
+        brandCategory.brandCategory = self.textBrandCategory.stringValue
+        brandCategory.brandSubCategory = self.textBrandSubCategory.stringValue
+        brandCategory.updateDateTime = self.textUpdateDateTime.stringValue
+        
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        if let encodedData = try? encoder.encode(brandCategory) {
+            let file_path = path + "/\(name)_BRAND_CATEGORY.json"
+            let pathAsURL = URL(fileURLWithPath: file_path)
+            do {
+                try encodedData.write(to: pathAsURL)
+            }
+            catch {
+                print("Failed to write [\(name)] BRAND CATEGORY JSON data: \(error.localizedDescription)")
             }
         }
     }
-    
+
+    func createBrandProfileJSONFile(path: String, name: String) {
+        var brandProfile: DetailBrandProfile = DetailBrandProfile()
+        if self.textBrandName.stringValue == "" {
+            print("Brand Name is empty, not creating Brand Profile JSON file, just return")
+            return
+        }
+        
+        brandProfile.brandName = self.textBrandName.stringValue
+        brandProfile.brandIconImage = self.textBrandIconImage.stringValue
+        brandProfile.brandCategory = self.textBrandCategory.stringValue
+        brandProfile.brandSubCategory = self.textBrandSubCategory.stringValue
+        brandProfile.menuNumber = self.textMenuNumber.stringValue
+        brandProfile.updateDateTime = self.textUpdateDateTime.stringValue
+        
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        if let encodedData = try? encoder.encode(brandProfile) {
+            let file_path = path + "/\(name)_DETAIL_BRAND_PROFILE.json"
+            let pathAsURL = URL(fileURLWithPath: file_path)
+            do {
+                try encodedData.write(to: pathAsURL)
+            }
+            catch {
+                print("Failed to write [\(name)] BRAND PROFILE JSON data: \(error.localizedDescription)")
+            }
+        }
+    }
+
     @IBAction func addProductItem(_ sender: NSButton) {
         var priceTemplate: DetailRecipeTemplate = DetailRecipeTemplate()
         var priceTemplateIndex: Int = -1
@@ -502,9 +626,12 @@ extension ViewController: NSTableViewDelegate, NSTableViewDataSource {
                 cellView.delegate = self
                 return cellView
             } else if tableColumn?.identifier.rawValue == "addedTemplateNameColumn" {
-                let cellIdentifier = NSUserInterfaceItemIdentifier(rawValue: "addedTemplateNameCell")
-                guard let cellView = tableView.makeView(withIdentifier: cellIdentifier, owner: self) as? NSTableCellView else { return nil }
-                cellView.textField?.stringValue = self.recipeTemplates[row].templateName
+                let cellIdentifier = NSUserInterfaceItemIdentifier(rawValue: "RecipeNameCell")
+                //guard let cellView = tableView.makeView(withIdentifier: cellIdentifier, owner: self) as? NSTableCellView else { return nil }
+                guard let cellView = tableView.makeView(withIdentifier: cellIdentifier, owner: self) as? RecipeNameCell else
+                { return nil }
+                //cellView.textField?.stringValue = self.recipeTemplates[row].templateName
+                cellView.setData(name: self.recipeTemplates[row].templateName)
                 return cellView
             } else {
                 let cellIdentifier = NSUserInterfaceItemIdentifier(rawValue: "RecipeTemplateCell")

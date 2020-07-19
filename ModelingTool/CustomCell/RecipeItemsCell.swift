@@ -20,7 +20,6 @@ class RecipeItemsCell: NSTableCellView {
         
     }
     
-    
     func setData(template_name: [String], item_name: [[String]], item: [DetailRecipeRelation]) {
         self.itemsArray.removeAll()
         
@@ -39,9 +38,9 @@ class RecipeItemsCell: NSTableCellView {
         }
         
         let spacing: CGFloat = CGFloat(5.0)
-        let width: CGFloat = CGFloat(60.0)
+        let width: CGFloat = CGFloat(75.0)
         let height: CGFloat = CGFloat(18.0)
-        let nameWidth: CGFloat = CGFloat(60.0)
+        let nameWidth: CGFloat = CGFloat(75.0)
         
         let viewFrame = self.frame
         let itemsXOffset: CGFloat = CGFloat(5.0)

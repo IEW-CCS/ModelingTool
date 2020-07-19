@@ -24,10 +24,11 @@ let TAIWAN_DATETIME_FORMATTER: String = "yyyy年MM月dd日 HH:mm:ss"
 let TAIWAN_DATETIME_FORMATTER2: String = "yyyy年MM月dd日 HH:mm"
 let DATE_FORMATTER: String = "yyyy年MM月dd日"
 
-let TEMPLATE_NAMES: [String] = ["價格", "容量", "冰量", "糖量", "口感添加"]
+let TEMPLATE_NAMES: [String] = ["價格", "容量", "冰量", "糖量", "糖量", "口感添加"]
 let TEMPLATE_ITEMS: [[String]] = [
     ["價格"],
     ["M", "L", "瓶"],
     ["去冰", "微冰", "少冰", "正常冰", "熱飲"],
     ["無糖", "微糖", "半糖", "少糖", "正常糖"],
+    ["一分糖", "二分糖", "三分糖", "四分糖", "五分糖", "六分糖", "七分糖", "八分糖", "九分糖", "十分糖"],
     ["波霸", "珍珠", "仙草凍", "咖啡凍"]]

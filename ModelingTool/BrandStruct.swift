@@ -65,6 +65,7 @@ struct DetailBrandProfile: Codable {
 }
 
 struct DetailMenuInformation: Codable {
+    var brandName: String = ""
     var menuNumber: String = ""
     var menuDescription: String?
     var multiMenuImageURL: [String]?
@@ -90,6 +91,7 @@ struct DetailMenuInformation: Codable {
         }
         
         return [
+            "brandName": brandName,
             "menuNumber": menuNumber,
             "menuDescription": menuDescription as Any,
             "multiMenuImageURL": multiMenuImageURL as Any,

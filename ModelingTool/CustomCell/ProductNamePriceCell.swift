@@ -70,7 +70,12 @@ class ProductNamePriceCell: NSTableCellView {
             let itemCheckBox = NSButton(checkboxWithTitle: self.productData.priceList![i].recipeItemName, target: nil, action: nil)
             itemCheckBox.frame = frameItem
             itemCheckBox.tag = -1
-            itemCheckBox.state = .on
+            if self.productData.priceList![i].availableFlag {
+                itemCheckBox.state = .on
+            } else {
+                itemCheckBox.state = .off
+            }
+            
             itemCheckBox.translatesAutoresizingMaskIntoConstraints = false
             self.itemsArray.append(itemCheckBox)
             self.addSubview(itemCheckBox)

@@ -14,6 +14,7 @@
 		36302D2E24AB7B2C001CA08C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36302D2C24AB7B2C001CA08C /* Main.storyboard */; };
 		36302D3724AB7C0D001CA08C /* BrandStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36302D3624AB7C0D001CA08C /* BrandStruct.swift */; };
 		36302D3A24AB823C001CA08C /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36302D3924AB823C001CA08C /* GlobalConstants.swift */; };
+		36AF271924C3344500F91F46 /* RecipeNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AF271824C3344500F91F46 /* RecipeNameCell.swift */; };
 		36DD1F7724AC459D00D1AFF5 /* TemplateItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DD1F7624AC459D00D1AFF5 /* TemplateItemCell.swift */; };
 		36DD1F7924AC5BA400D1AFF5 /* RecipeTemplateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DD1F7824AC5BA400D1AFF5 /* RecipeTemplateCell.swift */; };
 		36DD1F7E24ACC8DA00D1AFF5 /* ProductNamePriceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DD1F7D24ACC8DA00D1AFF5 /* ProductNamePriceCell.swift */; };
@@ -32,6 +33,7 @@
 		36302D3024AB7B2C001CA08C /* ModelingTool.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ModelingTool.entitlements; sourceTree = "<group>"; };
 		36302D3624AB7C0D001CA08C /* BrandStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandStruct.swift; sourceTree = "<group>"; };
 		36302D3924AB823C001CA08C /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
+		36AF271824C3344500F91F46 /* RecipeNameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeNameCell.swift; sourceTree = "<group>"; };
 		36DD1F7624AC459D00D1AFF5 /* TemplateItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateItemCell.swift; sourceTree = "<group>"; };
 		36DD1F7824AC5BA400D1AFF5 /* RecipeTemplateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTemplateCell.swift; sourceTree = "<group>"; };
 		36DD1F7D24ACC8DA00D1AFF5 /* ProductNamePriceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductNamePriceCell.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 			children = (
 				36DD1F8624B14E0700D1AFF5 /* TemplateSequenceCell.swift */,
 				36DD1F7624AC459D00D1AFF5 /* TemplateItemCell.swift */,
+				36AF271824C3344500F91F46 /* RecipeNameCell.swift */,
 				36DD1F7824AC5BA400D1AFF5 /* RecipeTemplateCell.swift */,
 				36DD1F7D24ACC8DA00D1AFF5 /* ProductNamePriceCell.swift */,
 				36DD1F8124AD833200D1AFF5 /* RecipeItemsCell.swift */,
@@ -166,6 +169,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				36DD1F7924AC5BA400D1AFF5 /* RecipeTemplateCell.swift in Sources */,
+				36AF271924C3344500F91F46 /* RecipeNameCell.swift in Sources */,
 				36DD1F7724AC459D00D1AFF5 /* TemplateItemCell.swift in Sources */,
 				36DD1F7E24ACC8DA00D1AFF5 /* ProductNamePriceCell.swift in Sources */,
 				36302D3724AB7C0D001CA08C /* BrandStruct.swift in Sources */,
