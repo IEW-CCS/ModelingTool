@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import Firebase
 
 class ViewController: NSViewController {
     @IBOutlet weak var pr1: NSButton!
@@ -48,6 +49,7 @@ class ViewController: NSViewController {
     @IBOutlet weak var textProductCount: NSTextField!
     @IBOutlet weak var productCategoryTableView: NSTableView!
     @IBOutlet weak var productNamePriceTableView: NSTableView!
+    @IBOutlet weak var imageIcon: NSImageView!
     
 
     var templateNameIndex: Int = 0
@@ -82,14 +84,40 @@ class ViewController: NSViewController {
 
     override var representedObject: Any? {
         didSet {
-        // Update the view, if already loaded.
         }
+    }
+    
+    @IBAction func loadBrandIconImage(_ sender: NSButton) {
+        var path: String = ""
+        
+        let dialog = NSOpenPanel()
+        dialog.title = "Open the Menu Information from JSON file"
+        dialog.showsResizeIndicator = false
+        dialog.showsHiddenFiles = false;
+        dialog.allowsMultipleSelection = false;
+        dialog.canChooseFiles = true;
+        //dialog.canChooseDirectories = true;
+        
+        if(dialog.runModal() == NSApplication.ModalResponse.OK) {
+            let result = dialog.url
+            if result != nil {
+                path = result!.path
+                print("Selected path = \(path)")
+            } else {
+                return
+            }
+        }
+
+        let pathUrl = URL(fileURLWithPath: path)
+        let imageData = try! Data(contentsOf: pathUrl)
+
+        self.imageIcon.image = NSImage(data: imageData)
     }
     
     @IBAction func generateBrandProfile(_ sender: NSButton) {
         if self.textBrandName.stringValue != "" {
             self.textBrandCategory.stringValue = "茶飲類"
-            self.textBrandIconImage.stringValue = "Brand_Image/\(self.textBrandName.stringValue).png"
+            self.textBrandIconImage.stringValue = "Brand_Image/\(self.textBrandName.stringValue).jpg"
             self.textMenuNumber.stringValue = "\(self.textBrandName.stringValue)_MENU"
             self.textMenuMenuNumber.stringValue = "\(self.textBrandName.stringValue)_MENU"
             let formatter = DateFormatter()
@@ -182,7 +210,6 @@ class ViewController: NSViewController {
             self.productButtonArray[i].state = .on
             self.productButtonArray[i].isHidden = false
         }
-
     }
     
     @IBAction func openFromFile(_ openMenuItem: NSMenuItem) {
@@ -367,9 +394,67 @@ class ViewController: NSViewController {
         return nameString
     }
     
+    @IBAction func uploadDataToFirebase(_ sender: NSButton) {
+        var brandCategory: DetailBrandCategory = DetailBrandCategory()
+        var brandProfile: DetailBrandProfile = DetailBrandProfile()
+
+        if self.textBrandName.stringValue == "" {
+            print("Brand Name is empty, not uploading information to Firebase, just return")
+            _ = dialogInformation(title: "Error", message: "Brand Name CONNOT be blank")
+            return
+        }
+        
+        if self.imageIcon.image == nil {
+            print("Brand Image is nil, not uploading information to Firebase, just return")
+            _ = dialogInformation(title: "Error", message: "Brand Icon Image CONNOT be blank")
+            return
+        }
+
+        if self.textMenuNumber.stringValue == "" {
+            print("Menu Number is empty, not uploading information to Firebase, just return")
+            _ = dialogInformation(title: "Error", message: "Menu Number CONNOT be blank")
+            return
+        }
+
+        brandCategory.brandName = self.textBrandName.stringValue
+        brandCategory.brandIconImage = self.textBrandIconImage.stringValue
+        brandCategory.brandCategory = self.textBrandCategory.stringValue
+        brandCategory.brandSubCategory = self.textBrandSubCategory.stringValue
+        brandCategory.updateDateTime = self.textUpdateDateTime.stringValue
+
+        uploadFBBrandCategory(brand_name: brandCategory.brandName, brand_category: brandCategory)
+
+        brandProfile.brandName = self.textBrandName.stringValue
+        brandProfile.brandIconImage = self.textBrandIconImage.stringValue
+        brandProfile.brandCategory = self.textBrandCategory.stringValue
+        brandProfile.brandSubCategory = self.textBrandSubCategory.stringValue
+        brandProfile.menuNumber = self.textMenuNumber.stringValue
+        brandProfile.updateDateTime = self.textUpdateDateTime.stringValue
+
+        uploadFBDetailBrandProfile(brand_name: brandProfile.brandName, brand_profile: brandProfile)
+
+        self.menuInfo.brandName = self.textBrandName.stringValue
+        self.menuInfo.menuNumber = self.textMenuNumber.stringValue
+        self.menuInfo.createTime = self.textCreateTime.stringValue
+        self.menuInfo.recipeTemplates = self.recipeTemplates
+        self.menuInfo.productCategory = [DetailProductCategory]()
+        self.menuInfo.productCategory = self.productCategory
+        
+        uploadFBDetailMenuInformation(menu_number: self.menuInfo.menuNumber, menu_info: self.menuInfo)
+        
+        uploadFBBrandIconImage(brand_name: self.menuInfo.brandName, image: self.imageIcon.image!)
+    }
+    
+    
     @IBAction func createMenuJSONFile(_ sender: NSButton) {
         var path: String = ""
-        
+
+        if self.textBrandName.stringValue == "" {
+            print("Brand Name is empty, not uploading information to Firebase, just return")
+            _ = dialogInformation(title: "Error", message: "Brand Name CONNOT be blank")
+            return
+        }
+
         self.menuInfo.brandName = self.textBrandName.stringValue
         self.menuInfo.menuNumber = self.textMenuNumber.stringValue
         self.menuInfo.createTime = self.textCreateTime.stringValue
@@ -453,7 +538,7 @@ class ViewController: NSViewController {
             print("Brand Name is empty, not creating Brand Profile JSON file, just return")
             return
         }
-        
+
         brandProfile.brandName = self.textBrandName.stringValue
         brandProfile.brandIconImage = self.textBrandIconImage.stringValue
         brandProfile.brandCategory = self.textBrandCategory.stringValue

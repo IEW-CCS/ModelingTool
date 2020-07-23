@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3628786F24C6C47E0073FED3 /* FirebaseFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3628786E24C6C47E0073FED3 /* FirebaseFunctions.swift */; };
+		3628787324C6D1D00073FED3 /* UtilityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3628787224C6D1D00073FED3 /* UtilityFunctions.swift */; };
 		36302D2424AB7B2A001CA08C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36302D2324AB7B2A001CA08C /* AppDelegate.swift */; };
 		36302D2624AB7B2A001CA08C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36302D2524AB7B2A001CA08C /* ViewController.swift */; };
 		36302D2924AB7B2A001CA08C /* ModelingTool.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 36302D2724AB7B2A001CA08C /* ModelingTool.xcdatamodeld */; };
@@ -14,15 +16,20 @@
 		36302D2E24AB7B2C001CA08C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36302D2C24AB7B2C001CA08C /* Main.storyboard */; };
 		36302D3724AB7C0D001CA08C /* BrandStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36302D3624AB7C0D001CA08C /* BrandStruct.swift */; };
 		36302D3A24AB823C001CA08C /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36302D3924AB823C001CA08C /* GlobalConstants.swift */; };
+		364DD3D724C6BD9700AE2AB4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 364DD3D624C6BD9700AE2AB4 /* GoogleService-Info.plist */; };
 		36AF271924C3344500F91F46 /* RecipeNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AF271824C3344500F91F46 /* RecipeNameCell.swift */; };
 		36DD1F7724AC459D00D1AFF5 /* TemplateItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DD1F7624AC459D00D1AFF5 /* TemplateItemCell.swift */; };
 		36DD1F7924AC5BA400D1AFF5 /* RecipeTemplateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DD1F7824AC5BA400D1AFF5 /* RecipeTemplateCell.swift */; };
 		36DD1F7E24ACC8DA00D1AFF5 /* ProductNamePriceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DD1F7D24ACC8DA00D1AFF5 /* ProductNamePriceCell.swift */; };
 		36DD1F8224AD833200D1AFF5 /* RecipeItemsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DD1F8124AD833200D1AFF5 /* RecipeItemsCell.swift */; };
 		36DD1F8724B14E0700D1AFF5 /* TemplateSequenceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DD1F8624B14E0700D1AFF5 /* TemplateSequenceCell.swift */; };
+		FA32BA974BCCC466B4564159 /* Pods_ModelingTool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D7ADF16790A80634D16EAF0 /* Pods_ModelingTool.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D7ADF16790A80634D16EAF0 /* Pods_ModelingTool.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ModelingTool.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3628786E24C6C47E0073FED3 /* FirebaseFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFunctions.swift; sourceTree = "<group>"; };
+		3628787224C6D1D00073FED3 /* UtilityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityFunctions.swift; sourceTree = "<group>"; };
 		36302D2024AB7B2A001CA08C /* ModelingTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ModelingTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36302D2324AB7B2A001CA08C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		36302D2524AB7B2A001CA08C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -33,12 +40,15 @@
 		36302D3024AB7B2C001CA08C /* ModelingTool.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ModelingTool.entitlements; sourceTree = "<group>"; };
 		36302D3624AB7C0D001CA08C /* BrandStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandStruct.swift; sourceTree = "<group>"; };
 		36302D3924AB823C001CA08C /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
+		364DD3D624C6BD9700AE2AB4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		36AF271824C3344500F91F46 /* RecipeNameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeNameCell.swift; sourceTree = "<group>"; };
 		36DD1F7624AC459D00D1AFF5 /* TemplateItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateItemCell.swift; sourceTree = "<group>"; };
 		36DD1F7824AC5BA400D1AFF5 /* RecipeTemplateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTemplateCell.swift; sourceTree = "<group>"; };
 		36DD1F7D24ACC8DA00D1AFF5 /* ProductNamePriceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductNamePriceCell.swift; sourceTree = "<group>"; };
 		36DD1F8124AD833200D1AFF5 /* RecipeItemsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeItemsCell.swift; sourceTree = "<group>"; };
 		36DD1F8624B14E0700D1AFF5 /* TemplateSequenceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateSequenceCell.swift; sourceTree = "<group>"; };
+		421BC61F56720F5020F0584B /* Pods-ModelingTool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModelingTool.debug.xcconfig"; path = "Target Support Files/Pods-ModelingTool/Pods-ModelingTool.debug.xcconfig"; sourceTree = "<group>"; };
+		7FE142013D5CD2A4923B6BA7 /* Pods-ModelingTool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModelingTool.release.xcconfig"; path = "Target Support Files/Pods-ModelingTool/Pods-ModelingTool.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,17 +56,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA32BA974BCCC466B4564159 /* Pods_ModelingTool.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		26719C72039738939FDBB093 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				421BC61F56720F5020F0584B /* Pods-ModelingTool.debug.xcconfig */,
+				7FE142013D5CD2A4923B6BA7 /* Pods-ModelingTool.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		36302D1724AB7B2A001CA08C = {
 			isa = PBXGroup;
 			children = (
 				36302D2224AB7B2A001CA08C /* ModelingTool */,
 				36302D2124AB7B2A001CA08C /* Products */,
+				26719C72039738939FDBB093 /* Pods */,
+				806F519621DE3C4272C04D02 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -76,11 +98,14 @@
 				36302D2A24AB7B2C001CA08C /* Assets.xcassets */,
 				36302D2C24AB7B2C001CA08C /* Main.storyboard */,
 				36302D2524AB7B2A001CA08C /* ViewController.swift */,
+				364DD3D624C6BD9700AE2AB4 /* GoogleService-Info.plist */,
 				36302D2F24AB7B2C001CA08C /* Info.plist */,
 				36302D3024AB7B2C001CA08C /* ModelingTool.entitlements */,
 				36302D2724AB7B2A001CA08C /* ModelingTool.xcdatamodeld */,
 				36302D3624AB7C0D001CA08C /* BrandStruct.swift */,
 				36302D3924AB823C001CA08C /* GlobalConstants.swift */,
+				3628786E24C6C47E0073FED3 /* FirebaseFunctions.swift */,
+				3628787224C6D1D00073FED3 /* UtilityFunctions.swift */,
 			);
 			path = ModelingTool;
 			sourceTree = "<group>";
@@ -98,6 +123,14 @@
 			path = CustomCell;
 			sourceTree = "<group>";
 		};
+		806F519621DE3C4272C04D02 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2D7ADF16790A80634D16EAF0 /* Pods_ModelingTool.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -105,9 +138,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 36302D3324AB7B2C001CA08C /* Build configuration list for PBXNativeTarget "ModelingTool" */;
 			buildPhases = (
+				CA2273E53C60953FC5213BD2 /* [CP] Check Pods Manifest.lock */,
 				36302D1C24AB7B2A001CA08C /* Sources */,
 				36302D1D24AB7B2A001CA08C /* Frameworks */,
 				36302D1E24AB7B2A001CA08C /* Resources */,
+				67FD33F55D345182583D6B64 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -158,10 +193,53 @@
 			files = (
 				36302D2B24AB7B2C001CA08C /* Assets.xcassets in Resources */,
 				36302D2E24AB7B2C001CA08C /* Main.storyboard in Resources */,
+				364DD3D724C6BD9700AE2AB4 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		67FD33F55D345182583D6B64 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ModelingTool/Pods-ModelingTool-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ModelingTool/Pods-ModelingTool-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ModelingTool/Pods-ModelingTool-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CA2273E53C60953FC5213BD2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ModelingTool-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		36302D1C24AB7B2A001CA08C /* Sources */ = {
@@ -176,7 +254,9 @@
 				36302D2624AB7B2A001CA08C /* ViewController.swift in Sources */,
 				36DD1F8224AD833200D1AFF5 /* RecipeItemsCell.swift in Sources */,
 				36302D3A24AB823C001CA08C /* GlobalConstants.swift in Sources */,
+				3628786F24C6C47E0073FED3 /* FirebaseFunctions.swift in Sources */,
 				36302D2924AB7B2A001CA08C /* ModelingTool.xcdatamodeld in Sources */,
+				3628787324C6D1D00073FED3 /* UtilityFunctions.swift in Sources */,
 				36DD1F8724B14E0700D1AFF5 /* TemplateSequenceCell.swift in Sources */,
 				36302D2424AB7B2A001CA08C /* AppDelegate.swift in Sources */,
 			);
@@ -246,7 +326,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -300,7 +380,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -311,6 +391,7 @@
 		};
 		36302D3424AB7B2C001CA08C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 421BC61F56720F5020F0584B /* Pods-ModelingTool.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ModelingTool/ModelingTool.entitlements;
@@ -331,6 +412,7 @@
 		};
 		36302D3524AB7B2C001CA08C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7FE142013D5CD2A4923B6BA7 /* Pods-ModelingTool.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ModelingTool/ModelingTool.entitlements;

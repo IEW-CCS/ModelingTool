@@ -7,14 +7,25 @@
 //
 
 import Cocoa
+import Firebase
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-
-
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
+        writeFirebaseConfig()
+        FirebaseApp.configure()
+    }
+
+    func writeFirebaseConfig() {
+        let fm = FileManager.default
+        let src = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist")
+        let dst = NSHomeDirectory() + "/Documents/GoogleService-Info.plist"
+        
+        if !fm.fileExists(atPath: dst) {
+            try! fm.copyItem(atPath: src!, toPath: dst)
+        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

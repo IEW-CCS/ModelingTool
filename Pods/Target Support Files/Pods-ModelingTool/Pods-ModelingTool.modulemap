@@ -1,0 +1,6 @@
+framework module Pods_ModelingTool {
+  umbrella header "Pods-ModelingTool-umbrella.h"
+
+  export *
+  module * { export * }
+}

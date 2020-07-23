@@ -83,10 +83,10 @@
             </objects>
             <point key="canvasLocation" x="75" y="250"/>
         </scene>
-        <!--View Controller-->
+        <!--Modeling Tool-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="ModelingTool" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Modeling Tool" id="XfG-lQ-9wD" customClass="ViewController" customModule="ModelingTool" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="1029" height="772"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1056,22 +1056,11 @@ DQ
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CYA-l4-gqy">
-                                <rect key="frame" x="877" y="32" width="81" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Create" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HZo-qG-QcP">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="createMenuJSONFile:" target="XfG-lQ-9wD" id="ltX-53-5a9"/>
-                                </connections>
-                            </button>
                             <box fixedFrame="YES" title="Product" translatesAutoresizingMaskIntoConstraints="NO" id="U6H-dq-fRt">
-                                <rect key="frame" x="875" y="82" width="84" height="114"/>
+                                <rect key="frame" x="881" y="127" width="86" height="114"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="WBG-1z-CHq">
-                                    <rect key="frame" x="3" y="3" width="78" height="96"/>
+                                    <rect key="frame" x="3" y="3" width="80" height="96"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Otu-8e-rPw">
@@ -1382,6 +1371,45 @@ DQ
                                     <action selector="getUpdatedRecipeTemplate:" target="XfG-lQ-9wD" id="H2K-TT-hKF"/>
                                 </connections>
                             </button>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fR6-wS-Bha">
+                                <rect key="frame" x="895" y="639" width="96" height="96"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" id="drr-1y-LCe"/>
+                            </imageView>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uiB-HP-kPf">
+                                <rect key="frame" x="894" y="594" width="99" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Load Icon" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="vt5-wZ-9qa">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="loadBrandIconImage:" target="XfG-lQ-9wD" id="fGr-1J-4iM"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CYA-l4-gqy">
+                                <rect key="frame" x="878" y="83" width="112" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Create Files" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HZo-qG-QcP">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="createMenuJSONFile:" target="XfG-lQ-9wD" id="ltX-53-5a9"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="93Z-eQ-7b5">
+                                <rect key="frame" x="878" y="38" width="139" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Upload Firebase" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5ad-yo-oqU">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <color key="contentTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="uploadDataToFirebase:" target="XfG-lQ-9wD" id="ceA-4e-gkW"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="au7-Vw-26z" firstAttribute="top" secondItem="RsR-ft-Lla" secondAttribute="bottom" constant="12" id="60D-1c-Be7"/>
@@ -1402,6 +1430,7 @@ DQ
                         <outlet property="checkboxAlone" destination="a8s-LJ-Grt" id="87U-4x-yt8"/>
                         <outlet property="checkboxMandatory" destination="RyZ-g4-UPA" id="bcp-yV-gbQ"/>
                         <outlet property="checkboxMulti" destination="3b9-fk-6KD" id="HYo-fi-H6b"/>
+                        <outlet property="imageIcon" destination="fR6-wS-Bha" id="df2-dD-7Xo"/>
                         <outlet property="pp1" destination="YU4-H8-fKm" id="CVn-eh-vkp"/>
                         <outlet property="pp10" destination="wrK-SB-Bd8" id="AnF-9y-0DS"/>
                         <outlet property="pp2" destination="NK7-7y-DcA" id="hPL-Rb-GRF"/>
