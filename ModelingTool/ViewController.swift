@@ -251,7 +251,7 @@ class ViewController: NSViewController {
         
         self.textBrandName.stringValue = self.menuInfo.brandName
         self.textBrandCategory.stringValue = "茶飲類"
-        self.textBrandIconImage.stringValue = "Brand_Image/\(self.textBrandName.stringValue).png"
+        self.textBrandIconImage.stringValue = "Brand_Image/\(self.textBrandName.stringValue).jpg"
         self.textMenuNumber.stringValue = "\(self.textBrandName.stringValue)_MENU"
         self.textMenuMenuNumber.stringValue = "\(self.textBrandName.stringValue)_MENU"
         //let formatter = DateFormatter()
@@ -299,7 +299,7 @@ class ViewController: NSViewController {
         updateRecipeTemplates()
         
         if self.textCategoryName.stringValue == "" || self.textProductCount.stringValue == "" {
-            print("Category Name or Product Count error, hust return")
+            print("Category Name or Product Count error, just return")
             return
         }
         
@@ -567,7 +567,7 @@ class ViewController: NSViewController {
         updateRecipeTemplates()
         
         if self.textCategoryName.stringValue == "" || self.textProductCount.stringValue == "" {
-            print("Category Name or Product Count error, hust return")
+            print("Category Name or Product Count error, just return")
             return
         }
         
@@ -757,8 +757,8 @@ extension ViewController: NSTableViewDelegate, NSTableViewDataSource {
                 
                 guard let cellView = tableView.makeView(withIdentifier: cellIdentifier, owner: self) as? RecipeItemsCell else { return nil }
                 var seq_array: [Int] = [Int]()
-                for i in 0...self.self.productCategory[self.productCategoryIndex].productItems![self.productItemIndex].recipeRelation!.count - 1 {
-                    let seq_no = self.productCategory[self.productCategoryIndex].productItems![self.productItemIndex].recipeRelation![i].templateSequence
+                for i in 0...self.self.productCategory[self.productCategoryIndex].productItems![row].recipeRelation!.count - 1 {
+                    let seq_no = self.productCategory[self.productCategoryIndex].productItems![row].recipeRelation![i].templateSequence
                     seq_array.append(seq_no)
                 }
                 let templateName = self.getRecipeTemplateName(sequence_no: seq_array)
@@ -773,6 +773,10 @@ extension ViewController: NSTableViewDelegate, NSTableViewDataSource {
     
     func tableViewSelectionDidChange(_ notification: Notification) {
         guard let table = notification.object as? NSTableView else {
+            return
+        }
+        
+        if table.selectedRow == -1 {
             return
         }
         

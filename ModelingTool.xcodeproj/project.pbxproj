@@ -397,6 +397,7 @@
 				CODE_SIGN_ENTITLEMENTS = ModelingTool/ModelingTool.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 34KF2N2J26;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = ModelingTool/Info.plist;
@@ -418,6 +419,7 @@
 				CODE_SIGN_ENTITLEMENTS = ModelingTool/ModelingTool.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 34KF2N2J26;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = ModelingTool/Info.plist;

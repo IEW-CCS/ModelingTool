@@ -21,6 +21,7 @@ class RecipeItemsCell: NSTableCellView {
     }
     
     func setData(template_name: [String], item_name: [[String]], item: [DetailRecipeRelation]) {
+        //print("RecipeItemsCell template name: \(template_name), item name: \(item_name)")
         self.itemsArray.removeAll()
         
         self.itemsData = item
@@ -61,6 +62,7 @@ class RecipeItemsCell: NSTableCellView {
                 let itemCheckBox = NSButton(checkboxWithTitle: self.itemsName[i][j], target: nil, action: nil)
                 itemCheckBox.frame = itemFrame
                 itemCheckBox.tag = -1
+                itemCheckBox.state = .off
                 if self.itemsData[i].itemRelation[j] {
                     itemCheckBox.state = .on
                 } else {
@@ -74,17 +76,30 @@ class RecipeItemsCell: NSTableCellView {
     }
     
     func getRecipeRelation() -> [DetailRecipeRelation] {
+        var indexArray: [Int] = [Int]()
         for i in 0...self.itemsArray.count - 1 {
+            var isFound: Bool = false
             for j in 0...self.itemsArray[i].count - 1 {
                 if self.self.itemsArray[i][j].state == .on {
                     self.itemsData[i].itemRelation[j] = true
+                    isFound = true
                 } else {
                     self.itemsData[i].itemRelation[j] = false
                 }
             }
+            
+            if isFound {
+                indexArray.append(i)
+            }
         }
         
-        return self.itemsData
+        var returnData: [DetailRecipeRelation] = [DetailRecipeRelation]()
+        if !indexArray.isEmpty {
+            for k in 0...indexArray.count - 1 {
+                returnData.append(self.itemsData[indexArray[k]])
+            }
+        }
+        //return self.itemsData
+        return returnData
     }
-
 }

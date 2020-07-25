@@ -146,7 +146,7 @@ class RecipeTemplateCell: NSTableCellView {
             if self.itemsArray[i].stringValue != "" {
                 seq_no = seq_no + 1
                 var item: DetailRecipeItem = DetailRecipeItem()
-                item.itemCheckedFlag = true
+                item.itemCheckedFlag = false
                 item.itemName = self.itemsArray[i].stringValue
                 item.itemSequence = seq_no
                 if self.priceArray[i].stringValue == "" {
