@@ -22,7 +22,7 @@ class RecipeTemplateCell: NSTableCellView {
     var templateIndex: Int = 0
     
     var templateData: DetailRecipeTemplate = DetailRecipeTemplate()
-    let MAX_ITEM_NUMBER: Int = 12
+    let MAX_ITEM_NUMBER: Int = 20
     var itemsArray: [NSTextField] = [NSTextField]()
     var priceArray: [NSTextField] = [NSTextField]()
     weak var delegate: RecipeTemplateDelegate?

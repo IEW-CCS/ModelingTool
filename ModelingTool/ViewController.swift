@@ -745,7 +745,6 @@ extension ViewController: NSTableViewDelegate, NSTableViewDataSource {
                 cellView.productIndex = row
                 cellView.setData(item: self.productCategory[self.productCategoryIndex].productItems![row])
                 return cellView
-
             }
             
             if tableColumn?.identifier.rawValue == "recipeItemsColumn" {
@@ -807,7 +806,7 @@ extension ViewController: NSTableViewDelegate, NSTableViewDataSource {
         }
         
         if tableView == self.productNamePriceTableView {
-            return 100
+            return 110
         }
         
         
@@ -825,7 +824,16 @@ extension ViewController: ProductNamePriceDelegate {
     func updateProductItem(sender: ProductNamePriceCell, category_index: Int, product_index: Int, product: DetailProductItem) {
         print("updateProductItem for category: [\(category_index)], product item: [\(product_index)]")
         var data = product
-        
+
+        //if self.productCategory[category_index].productItems![product_index].recipeRelation == nil {
+        //    return
+        //}
+
+        if self.productCategory[self.productCategoryIndex].productItems![self.productItemIndex].recipeRelation == nil {
+            self.productCategory[self.productCategoryIndex].productItems![self.productItemIndex] = data
+            return
+        }
+
         let cell = self.productNamePriceTableView.view(atColumn: 1, row: product_index, makeIfNecessary: true) as! RecipeItemsCell
         data.recipeRelation! = cell.getRecipeRelation()
 

@@ -16,6 +16,7 @@ class ProductNamePriceCell: NSTableCellView {
     @IBOutlet weak var textProductName: NSTextField!
     @IBOutlet weak var labelItem: NSTextField!
     @IBOutlet weak var labelPrice: NSTextField!
+    @IBOutlet weak var textDescription: NSTextField!
     
     var productData: DetailProductItem = DetailProductItem()
     var itemsArray: [NSButton] = [NSButton]()
@@ -53,6 +54,7 @@ class ProductNamePriceCell: NSTableCellView {
         }
         
         textProductName.stringValue = self.productData.productName
+        textDescription.stringValue = self.productData.productDescription ?? ""
         
         
         let spacing: CGFloat = CGFloat(5.0)
@@ -119,6 +121,7 @@ class ProductNamePriceCell: NSTableCellView {
     
     func getProductItemData() -> DetailProductItem{
         self.productData.productName = self.textProductName.stringValue
+        self.productData.productDescription = self.textDescription.stringValue
         for i in 0...self.itemsArray.count - 1 {
             if self.itemsArray[i].state == .on {
                 self.productData.priceList![i].availableFlag = true
