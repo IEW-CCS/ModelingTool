@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import Cocoa
 
 func downloadFBDetailBrandProfile(brand_name: String, completion: @escaping (DetailBrandProfile?) -> Void) {
     var brandData: DetailBrandProfile = DetailBrandProfile()
@@ -94,7 +95,14 @@ func uploadFBDetailMenuInformation(menu_number: String, menu_info: DetailMenuInf
     let databaseRef = Database.database().reference()
     let pathString = "DETAIL_MENU_INFORMATION/\(menu_number)"
     
-    databaseRef.child(pathString).setValue(menu_info.toAnyObject())
+    databaseRef.child(pathString).setValue(menu_info.toAnyObject()) { (error, reference) in
+        if error != nil {
+            _ = dialogInformation(title: "Error", message: error!.localizedDescription)
+            return
+        }
+        
+        _ = dialogInformation(title: "Information", message: "Upload Detail Menu Information Successful!")
+    }
 }
 
 func uploadFBBrandIconImage(brand_name: String, image: NSImage) {
@@ -112,8 +120,11 @@ func uploadFBBrandIconImage(brand_name: String, image: NSImage) {
     storageRef.putData(uploadData!, metadata: nil, completion: { (data, error) in
         if error != nil {
             print(error!.localizedDescription)
+            _ = dialogInformation(title: "Error", message: error!.localizedDescription)
             return
         }
+        
+        _ = dialogInformation(title: "Information", message: "Upload Icon Image to Storage Successful!")
     })
     
 }

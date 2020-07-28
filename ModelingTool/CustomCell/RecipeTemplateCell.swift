@@ -95,6 +95,9 @@ class RecipeTemplateCell: NSTableCellView {
 
             let framePrice = NSRect(x: priceXOffset + width * CGFloat(i) + CGFloat(spacing), y: CGFloat(priceYOffset), width: width, height: height)
             let priceTextField = NSTextField(frame: framePrice)
+            let onlyIntFormatter = OnlyIntegerValueFormatter()
+            priceTextField.formatter = onlyIntFormatter
+
             priceTextField.tag = -1
             priceTextField.translatesAutoresizingMaskIntoConstraints = false
             

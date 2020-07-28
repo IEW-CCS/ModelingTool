@@ -78,6 +78,9 @@ class ViewController: NSViewController {
         self.productNamePriceTableView.delegate = self
         self.productNamePriceTableView.dataSource = self
         
+        let onlyIntFormatter = OnlyIntegerValueFormatter()
+        self.textProductCount.formatter = onlyIntFormatter
+
         self.templateItemsState = Array(repeating: true, count: TEMPLATE_ITEMS[self.templateNameIndex].count)
         setupCategoryButtons()
     }
@@ -627,6 +630,15 @@ class ViewController: NSViewController {
         self.productNamePriceTableView.reloadData()
     }
     
+    @IBAction func deleteProductCategory(_ sender: NSButton) {
+        self.productCategory.remove(at: self.productCategoryIndex)
+        self.productCategoryIndex = 0
+        self.productItemIndex = 0
+        
+        self.productCategoryTableView.reloadData()
+        self.productNamePriceTableView.reloadData()
+    }
+    
 }
 
 extension ViewController: NSTableViewDelegate, NSTableViewDataSource {
@@ -796,6 +808,7 @@ extension ViewController: NSTableViewDelegate, NSTableViewDataSource {
             //print("self.productNamePriceTableView -> tableViewSelectionDidChange")
             //print("self.productNamePriceTableView -> self.productItemIndex = \(self.productItemIndex)")
             //print("self.productNamePriceTableView -> table.selectedRow = \(table.selectedRow)")
+            self.prepareProductItemData(category_index: self.productCategoryIndex, product_index: self.productItemIndex)
             self.productItemIndex = table.selectedRow
         }
     }
@@ -811,6 +824,21 @@ extension ViewController: NSTableViewDelegate, NSTableViewDataSource {
         
         
         return 17
+    }
+    
+    func prepareProductItemData(category_index: Int, product_index: Int) {
+        let cellProduct = self.productNamePriceTableView.view(atColumn: 0, row: product_index, makeIfNecessary: true) as! ProductNamePriceCell
+        var data = cellProduct.getProductItemData()
+        
+        if self.productCategory[self.productCategoryIndex].productItems![self.productItemIndex].recipeRelation == nil {
+            self.productCategory[self.productCategoryIndex].productItems![self.productItemIndex] = data
+            return
+        }
+
+        let cellRecipe = self.productNamePriceTableView.view(atColumn: 1, row: product_index, makeIfNecessary: true) as! RecipeItemsCell
+        data.recipeRelation! = cellRecipe.getRecipeRelation()
+
+        self.productCategory[self.productCategoryIndex].productItems![self.productItemIndex] = data
     }
 }
 

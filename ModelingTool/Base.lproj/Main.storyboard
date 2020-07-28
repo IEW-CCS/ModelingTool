@@ -88,7 +88,7 @@
         <scene sceneID="hIz-AP-VOD">
             <objects>
                 <viewController title="Modeling Tool" id="XfG-lQ-9wD" customClass="ViewController" customModule="ModelingTool" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="m2S-Jp-Qdl">
+                    <view key="view" autoresizesSubviews="NO" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="1029" height="772"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
@@ -1428,6 +1428,17 @@ DQ
                                 <color key="contentTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="uploadDataToFirebase:" target="XfG-lQ-9wD" id="ceA-4e-gkW"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z0s-zm-x28">
+                                <rect key="frame" x="878" y="262" width="139" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Delete Product Category" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="p9q-D9-u4k">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="deleteProductCategory:" target="XfG-lQ-9wD" id="9I9-9g-LLd"/>
                                 </connections>
                             </button>
                         </subviews>
