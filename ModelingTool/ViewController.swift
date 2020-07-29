@@ -760,7 +760,7 @@ extension ViewController: NSTableViewDelegate, NSTableViewDataSource {
             }
             
             if tableColumn?.identifier.rawValue == "recipeItemsColumn" {
-                if self.productCategory[self.productCategoryIndex].productItems![self.productItemIndex].recipeRelation == nil {
+                if self.productCategory[self.productCategoryIndex].productItems![self.productItemIndex].recipeRelation == nil || self.productCategory[self.productCategoryIndex].productItems![self.productItemIndex].recipeRelation!.isEmpty {
                     return nil
                 }
                 
@@ -821,7 +821,6 @@ extension ViewController: NSTableViewDelegate, NSTableViewDataSource {
         if tableView == self.productNamePriceTableView {
             return 110
         }
-        
         
         return 17
     }
