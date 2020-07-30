@@ -419,33 +419,52 @@ class ViewController: NSViewController {
             return
         }
 
-        brandCategory.brandName = self.textBrandName.stringValue
-        brandCategory.brandIconImage = self.textBrandIconImage.stringValue
-        brandCategory.brandCategory = self.textBrandCategory.stringValue
-        brandCategory.brandSubCategory = self.textBrandSubCategory.stringValue
-        brandCategory.updateDateTime = self.textUpdateDateTime.stringValue
-
-        uploadFBBrandCategory(brand_name: brandCategory.brandName, brand_category: brandCategory)
-
-        brandProfile.brandName = self.textBrandName.stringValue
-        brandProfile.brandIconImage = self.textBrandIconImage.stringValue
-        brandProfile.brandCategory = self.textBrandCategory.stringValue
-        brandProfile.brandSubCategory = self.textBrandSubCategory.stringValue
-        brandProfile.menuNumber = self.textMenuNumber.stringValue
-        brandProfile.updateDateTime = self.textUpdateDateTime.stringValue
-
-        uploadFBDetailBrandProfile(brand_name: brandProfile.brandName, brand_profile: brandProfile)
-
-        self.menuInfo.brandName = self.textBrandName.stringValue
-        self.menuInfo.menuNumber = self.textMenuNumber.stringValue
-        self.menuInfo.createTime = self.textCreateTime.stringValue
-        self.menuInfo.recipeTemplates = self.recipeTemplates
-        self.menuInfo.productCategory = [DetailProductCategory]()
-        self.menuInfo.productCategory = self.productCategory
+        let targetSize = NSSize(width: 200.0, height: 200.0)
+        let resizeImage = self.imageIcon.image!.resized(to: targetSize)
+        let imageData = resizeImage?.representations.first as? NSBitmapImageRep
         
-        uploadFBDetailMenuInformation(menu_number: self.menuInfo.menuNumber, menu_info: self.menuInfo)
+        let uploadData = imageData!.representation(using: .jpeg, properties: [:])
         
-        uploadFBBrandIconImage(brand_name: self.menuInfo.brandName, image: self.imageIcon.image!)
+        let pathString = "Brand_Image/\(self.textBrandName.stringValue).jpg"
+        print("pathString = \(pathString)")
+        let storageRef = Storage.storage().reference().child(pathString)
+        
+
+        storageRef.putData(uploadData!, metadata: nil, completion: { (data, error) in
+            if error != nil {
+                print(error!.localizedDescription)
+                _ = dialogInformation(title: "Error", message: error!.localizedDescription)
+                return
+            }
+            
+            _ = dialogInformation(title: "Information", message: "Upload Icon Image to Storage Successful!")
+
+            brandCategory.brandName = self.textBrandName.stringValue
+            brandCategory.brandIconImage = self.textBrandIconImage.stringValue
+            brandCategory.brandCategory = self.textBrandCategory.stringValue
+            brandCategory.brandSubCategory = self.textBrandSubCategory.stringValue
+            brandCategory.updateDateTime = self.textUpdateDateTime.stringValue
+
+            uploadFBBrandCategory(brand_name: brandCategory.brandName, brand_category: brandCategory)
+
+            brandProfile.brandName = self.textBrandName.stringValue
+            brandProfile.brandIconImage = self.textBrandIconImage.stringValue
+            brandProfile.brandCategory = self.textBrandCategory.stringValue
+            brandProfile.brandSubCategory = self.textBrandSubCategory.stringValue
+            brandProfile.menuNumber = self.textMenuNumber.stringValue
+            brandProfile.updateDateTime = self.textUpdateDateTime.stringValue
+
+            uploadFBDetailBrandProfile(brand_name: brandProfile.brandName, brand_profile: brandProfile)
+
+            self.menuInfo.brandName = self.textBrandName.stringValue
+            self.menuInfo.menuNumber = self.textMenuNumber.stringValue
+            self.menuInfo.createTime = self.textCreateTime.stringValue
+            self.menuInfo.recipeTemplates = self.recipeTemplates
+            self.menuInfo.productCategory = [DetailProductCategory]()
+            self.menuInfo.productCategory = self.productCategory
+            
+            uploadFBDetailMenuInformation(menu_number: self.menuInfo.menuNumber, menu_info: self.menuInfo)
+        })        
     }
     
     
@@ -829,7 +848,8 @@ extension ViewController: NSTableViewDelegate, NSTableViewDataSource {
         let cellProduct = self.productNamePriceTableView.view(atColumn: 0, row: product_index, makeIfNecessary: true) as! ProductNamePriceCell
         var data = cellProduct.getProductItemData()
         
-        if self.productCategory[self.productCategoryIndex].productItems![self.productItemIndex].recipeRelation == nil {
+        if self.productCategory[self.productCategoryIndex].productItems![self.productItemIndex].recipeRelation == nil ||
+        self.productCategory[self.productCategoryIndex].productItems![self.productItemIndex].recipeRelation!.isEmpty {
             self.productCategory[self.productCategoryIndex].productItems![self.productItemIndex] = data
             return
         }

@@ -75,19 +75,54 @@ func downloadFBDetailMenuInformation(menu_number: String, completion: @escaping 
 }
 
 func uploadFBBrandCategory(brand_name: String, brand_category: DetailBrandCategory) {
+    var brandData: DetailBrandCategory = DetailBrandCategory()
+    brandData = brand_category
     
-    let databaseRef = Database.database().reference()
-    let pathString = "BRAND_CATEGORY/\(brand_name)"
+    let storageRef = Storage.storage().reference().child(brandData.brandIconImage!)
+    storageRef.downloadURL(completion: { (url, error) in
+        if let error = error {
+            print(error.localizedDescription)
+            return
+        }
+        
+        if url == nil {
+            print("downloadURL returns nil")
+            return
+        }
+        brandData.imageDownloadUrl = url?.absoluteString
+        
+        let databaseRef = Database.database().reference()
+        let pathString = "BRAND_CATEGORY/\(brand_name)"
+        
+        databaseRef.child(pathString).setValue(brandData.toAnyObject())
+    })
+
     
-    databaseRef.child(pathString).setValue(brand_category.toAnyObject())
 }
 
 func uploadFBDetailBrandProfile(brand_name: String, brand_profile: DetailBrandProfile) {
+    var profileData: DetailBrandProfile = DetailBrandProfile()
+    profileData = brand_profile
     
-    let databaseRef = Database.database().reference()
-    let pathString = "DETAIL_BRAND_PROFILE/\(brand_name)"
-    
-    databaseRef.child(pathString).setValue(brand_profile.toAnyObject())
+    let storageRef = Storage.storage().reference().child(profileData.brandIconImage!)
+    storageRef.downloadURL(completion: { (url, error) in
+        if let error = error {
+            print(error.localizedDescription)
+            return
+        }
+        
+        if url == nil {
+            print("downloadURL returns nil")
+            return
+        }
+        profileData.imageDownloadUrl = url?.absoluteString
+        
+        let databaseRef = Database.database().reference()
+        let pathString = "DETAIL_BRAND_PROFILE/\(brand_name)"
+        
+        databaseRef.child(pathString).setValue(profileData.toAnyObject())
+    })
+
 }
 
 func uploadFBDetailMenuInformation(menu_number: String, menu_info: DetailMenuInformation) {

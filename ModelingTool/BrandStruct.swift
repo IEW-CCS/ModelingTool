@@ -14,6 +14,7 @@ struct DetailBrandCategory: Codable {
     var brandCategory: String?
     var brandSubCategory: String?
     var updateDateTime: String = ""
+    var imageDownloadUrl: String?
     
     func toAnyObject() -> Any {
         return [
@@ -21,7 +22,8 @@ struct DetailBrandCategory: Codable {
             "brandIconImage": brandIconImage as Any,
             "brandCategory": brandCategory as Any,
             "brandSubCategory": brandSubCategory as Any,
-            "updateDateTime": updateDateTime
+            "updateDateTime": updateDateTime,
+            "imageDownloadUrl": imageDownloadUrl as Any
         ]
     }
 }
@@ -38,6 +40,7 @@ struct DetailBrandProfile: Codable {
     var facebookURL: String?
     var instagramURL: String?
     var updateDateTime: String = ""
+    var imageDownloadUrl: String?
 
     func toAnyObject() -> Any {
         var storeArray: [Any] = [Any]()
@@ -59,7 +62,8 @@ struct DetailBrandProfile: Codable {
             "officialWebURL": officialWebURL as Any,
             "facebookURL": facebookURL as Any,
             "instagramURL": instagramURL as Any,
-            "updateDateTime": updateDateTime
+            "updateDateTime": updateDateTime,
+            "imageDownloadUrl": imageDownloadUrl as Any
         ]
     }
 }
